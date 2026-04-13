@@ -86,7 +86,7 @@ img {
 }
 
 .section-padding {
-  padding: 120px 0;
+  padding: 60px 0;
 }
 
 .section-label {
@@ -304,14 +304,14 @@ img {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .nav-links a {
   font-family: var(--font-accent);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--gray-light);
   position: relative;
@@ -426,7 +426,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.25);
+  filter: brightness(0.45);
 }
 
 .hero-overlay {
@@ -435,7 +435,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.7) 100%);
   z-index: 1;
 }
 
@@ -658,14 +658,14 @@ img {
   animation-delay: 1s;
 }
 
-.floating-icon.whatsapp {
-  background: #25d366;
+.floating-icon.facebook {
+  background: #1877f2;
   color: white;
 }
 
-.floating-icon.phone {
-  background: var(--gradient-gold);
-  color: var(--black);
+.floating-icon.youtube {
+  background: #ff0000;
+  color: white;
 }
 
 .floating-icon.instagram {
@@ -2059,7 +2059,7 @@ img {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 300;
-  color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -2184,22 +2184,17 @@ img {
     grid-auto-rows: 280px;
   }
 
-  .portfolio-grid.bento-layout .portfolio-item {
+  .portfolio-grid.bento-layout .portfolio-item,
+  .portfolio-grid.standard-layout .portfolio-item {
     grid-column: span 1 !important;
     grid-row: span 1 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 80px 0;
   }
 
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 300px;
     height: 100vh;
     background: rgba(0,0,0,0.97);
     backdrop-filter: blur(20px);
@@ -2216,6 +2211,12 @@ img {
 
   .menu-toggle {
     display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 40px 0;
   }
 
   .about-grid {
@@ -2237,11 +2238,12 @@ img {
 
   .portfolio-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 300px;
+    grid-auto-rows: 350px;
   }
 
-  .portfolio-grid.bento-layout .portfolio-item {
-    grid-column: span 1 !important;
+  .portfolio-grid.bento-layout .portfolio-item,
+  .portfolio-grid.standard-layout .portfolio-item {
+    grid-column: 1 / -1 !important;
     grid-row: span 1 !important;
   }
 
@@ -2323,4 +2325,66 @@ img {
     padding: 8px 16px;
     font-size: 0.7rem;
   }
+}
+
+/* =========================================
+   Lightbox
+   ========================================= */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10000;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.15) rotate(90deg);
+  color: var(--gold);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
